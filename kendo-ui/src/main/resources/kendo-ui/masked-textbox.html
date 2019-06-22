@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template/base}"
+      th:with="title='masked',
+        link_demo='https://demos.telerik.com/kendo-ui/maskedtextbox/index',
+        link_api='https://docs.telerik.com/kendo-ui/api/javascript/ui/maskedtextbox'">
+<body>
+<section layout:fragment="content">
+    <div id="example">
+        <div class="demo-section k-content">
+
+
+            <ul id="fieldlist">
+                <li>
+                    <label for="culture">Choose culture:</label>
+                    <input id="culture" value="en-US" style="width: 100%;"/>
+                </li>
+                <li>
+                    <label for="money">Initial price:</label>
+                    <input id="money" value="1234.56" style="width: 100%;" />
+                </li>
+
+                <li>
+                    <h4 for="phone_number">Phone number:</h4>
+                    <input id="phone_number" value="555 123 4567"/>
+                </li>
+                <li>
+                    <h4 for="credit_card">Credit Card number:</h4>
+                    <input id="credit_card" value="1234 1234 1234 1234"/>
+                </li>
+                <li>
+                    <h4 for="ssn">Social security number:</h4>
+                    <input id="ssn" value="003-12-3456"/>
+                </li>
+                <li>
+                    <h4 for="postcode">UK postcode:</h4>
+                    <input id="postcode" value="W1N 1AC"/>
+                </li>
+            </ul>
+        </div>
+
+        <script>
+            $(function () {
+
+
+                $("#phone_number").kendoMaskedTextBox({
+                    mask: "(999) 000-0000"
+                });
+
+                $("#credit_card").kendoMaskedTextBox({
+                    mask: "0000 0000 0000 0000"
+                });
+
+                $("#ssn").kendoMaskedTextBox({
+                    mask: "000-00-0000"
+                });
+
+                $("#postcode").kendoMaskedTextBox({
+                    mask: "L0L 0LL"
+                });
+
+
+
+
+                var money = new kendo.ui.MaskedTextBox($("#money"), {
+                    mask: "0,000.00 $"
+                });
+
+                function changeCulture() {
+                    kendo.culture(this.value());
+                    console.log(this.value(), kendo.culture());
+                    money.setOptions(money.options);
+                }
+
+
+                $("#culture").kendoDropDownList({
+                    change: changeCulture,
+                    dataTextField: "text",
+                    dataValueField: "value",
+                    dataSource: [
+                        {text: "de-DE", value: "de-DE"},
+                        {text: "en-US", value: "en-US"},
+                        {text: "en-GB", value: "en-GB"},
+                        {text: "fr-FR", value: "fr-FR"},
+                        {text: "bg-BG", value: "bg-BG"}
+                    ]
+                });
+            });
+        </script>
+
+        <style>
+            #fieldlist {
+                margin: 0 0 -2em;
+                padding: 0;
+            }
+
+            #fieldlist li {
+                list-style: none;
+                padding-bottom: 2em;
+            }
+
+            #fieldlist .k-maskedtextbox {
+                width: 100%;
+            }
+        </style>
+    </div>
+</section>
+
+
+</body>
+</html>

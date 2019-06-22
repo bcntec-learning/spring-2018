@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template/base}"
+      th:with="title='autocomplete',
+        link_demo='https://demos.telerik.com/kendo-ui/datasource/index',
+        link_api='https://docs.telerik.com/kendo-ui/api/javascript/data/datasource'">
+<body>
+<section layout:fragment="content">
+
+
+    <div class="k-content demo-section" style=" overflow: auto;">
+        <div><h4>Sample1</h4></div>
+        <div id="countries1"></div>
+    </div>
+
+
+
+    <div class="k-content demo-section" style=" overflow: auto;">
+        <div><h4>Sample2</h4></div>
+        <table id="countries2" class="my-table">
+            <thead>
+            <tr>
+                <th>Country</th>
+                <th>Capital</th>
+                <th>Region</th>
+                <th>Flag</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td colspan="4"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="k-content demo-section" style=" overflow: auto;">
+            <div><h4>Sample3</h4></div>
+            <div id="countries3"></div>
+        </div>
+
+
+        <script id="template1" type="text/x-kendo-template">
+
+            <div>#= name #</div>
+
+        </script>
+
+        <script id="template2" type="text/x-kendo-template">
+            <tr>
+                <td>#= name #</td>
+                <td>#= capital #</td>
+                <td>#= region #</td>
+                <td><img src='${flag}' style='height: 20px'></img></td>
+            </tr>
+        </script>
+        <script>
+            $(function () {
+
+                var dataSource = new kendo.data.DataSource({
+
+                    data: [
+                        {"id": "a1", "name": "Antarctica"},
+                        {"id": "a2", "name": "Antigua and Barbuda"},
+                        {"id": "a3", "name": "Argentina"},
+                        {"id": "a4", "name": "Armenia"}]
+                    ,
+
+                    change: function () {
+                        var template = kendo.template($("#template1").html());
+                        var r = kendo.render(template, this.view());
+                        $("#countries1").html(r);
+                    }
+                });
+                dataSource.fetch();
+
+            });
+
+
+            //sample2
+            $(function () {
+                // create a template using the above definition
+                var template = kendo.template($("#template2").html());
+
+                var dataSource = new kendo.data.DataSource({
+                    transport: {
+                        read: {
+                            url: "https://restcountries.eu/rest/v2/all",
+                            dataType: "json" // "jsonp" is required for cross-domain requests; use "json" for same-domain requests
+                        }
+                    },
+                    requestStart: function () {
+                        console.log('requestStart');
+                        kendo.ui.progress($("#countries2"), true);
+                    },
+                    requestEnd: function () {
+                        console.log('requestEnd');
+                        var c = $("#countries2");
+                        kendo.ui.progress(c, false);
+
+                    },
+                    error: function (e) {
+                        console.log("error event handler", e.errors[0]);
+                    }
+                });
+
+
+                dataSource.fetch(function () {
+                    var r = kendo.render(template, this.view());
+                    $("#countries2").find("tbody").html(r);
+                });
+
+
+            });
+
+            //sample3
+            $(function () {
+
+                var dataSource = new kendo.data.DataSource({
+
+                    data: {
+                        total: 7,
+                        countries: [
+                            {"id": "a1", "description": "Antarctica"},
+                            {"id": "a2", "description": "Antigua and Barbuda"},
+                            {"id": "a3", "description": "Argentina"},
+                            {"id": "a4", "description": "Armenia"}],
+                        errors: [
+                            {
+                                code: "400",
+                                reason: "error!"
+                            }
+                        ]
+                    }
+                    ,
+                    schema: {
+                        type: "json",
+
+                        //data : "countries"
+                        data: function (response) {
+                            console.log("3:data:countries");
+                            return response;
+                        },
+                        parse: function (response) {
+                            console.log("3:parse:countries");
+                            return response.countries;
+                        },
+                        _errors: function (response) {
+                            console.log("errors as function", response);
+                            kendo.alert("error "+ JSON.stringify(response));
+                            return response.errors;
+                        },
+
+                        model: {
+                            fields: {
+                                name: "description"
+                            }
+                        }
+
+                    },
+
+                    change: function () {
+
+                        var template = kendo.template($("#template1").html());
+                        var r = kendo.render(template, this.view());
+                        $("#countries3").html(r);
+                    }
+                });
+                dataSource.fetch();
+
+            });
+
+
+        </script>
+        <style>
+            .demo-section {
+                overflow: auto;
+            }
+
+            .options label {
+                display: inline-block;
+                width: 70px;
+            }
+
+            .my-table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            table.my-table > thead > tr > th {
+                padding-top: 0;
+                font-size: 1.4em;
+            }
+        </style>
+</section>
+</body>
+</html>

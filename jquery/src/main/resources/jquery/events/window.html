@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template/base}">
+
+<head>
+    <title>Menu</title>
+
+
+    <script type="text/javascript">
+        $(function () {
+            window.addEventListener("keypress", function (ev) {
+
+                console.log(ev.charCode);
+                var divLog = $("#log,p");
+
+                divLog.append(".    ");
+
+            });
+
+            window.addEventListener("resize", function (ev) {
+
+                var w = $("#log,input[name='w']");
+                var h = $("#log,input[name='h']");
+
+                w.val($(window).width());
+                h.val($(window).height());
+            });
+        });
+
+
+
+
+    </script>
+</head>
+<body>
+
+<section layout:fragment="content">
+
+
+    <div id="log">
+
+        <p>Ready :</p>
+        <input name="w"/>
+        <input name="h"/>
+    </div>
+</section>
+</body>
+</html>

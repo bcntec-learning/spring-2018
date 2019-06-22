@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template/base}">
+<head>
+
+    <style>
+        .nice{
+            margin: 8px;
+            padding: 10px;
+            background: cyan;
+        }
+        .dashed{
+            border: dashed 2px blue;
+            border-radius: 6px;
+            padding: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+<section layout:fragment="content">
+    <div id="main">
+        <p>A</p>
+        <p>B</p>
+        <p>C</p>
+        <div>
+            <p>X</p>
+            <p>Z</p>
+        </div>
+    </div>
+
+    <script>
+        var par = document.querySelector("#main");
+
+        par.style.border = "1px solid red";
+        par.classList.add("nice");
+
+        par.onclick = higlight;
+
+
+        function higlight() {
+            var paragraphs = document.querySelectorAll("#main p");
+
+            var qty = paragraphs.length;
+            for (var i = 0; i < qty; i++) {
+                paragraphs[i].classList.toggle("dashed");
+            }
+
+
+
+        }
+
+    </script>
+</section>
+</body>
+</html>

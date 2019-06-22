@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template/base}"
+      th:with="title='autocomplate',
+        link_demo='https://demos.telerik.com/kendo-ui/autocomplete/index',
+        link_api='https://docs.telerik.com/kendo-ui/api/javascript/data/autocomplete'">
+<body>
+<section layout:fragment="content">
+    <div class="k-content" style=" overflow: auto;">
+        <h4><label for="autoComplete">Simple:</label></h4>
+        <input id="autoComplete"/>
+        <script>
+            $(function () {
+                $("#autoComplete").kendoAutoComplete(["Item1", "Item2", "Item3", "Item4"]);
+            });
+        </script>
+    </div>
+    <div class="k-content" style=" overflow: auto;">
+        <h4><label for="autoCompleteEvents">Events:</label></h4>
+        <input id="autoCompleteEvents"/> <div class="console"></div>
+        <script>
+            $(function () {
+                function consoleLog(e) {
+                    if ("kendoConsole" in window) {
+                        kendoConsole.log("event :: " + e.name);
+                    }
+                }
+
+                $("#autoCompleteEvents").kendoAutoComplete({
+                    dataSource: ["Item1", "Item2", "Item3", "Item4"],
+                    select: consoleLog,
+                    change: consoleLog,
+                    close: consoleLog,
+                    open: consoleLog,
+                    filtering: consoleLog,
+                    dataBound: consoleLog
+                });
+            });
+        </script>
+    </div>
+
+    <div class="k-content" style=" overflow: auto;">
+        <h4><label for="countries">Ajax Datasource:</label></h4>
+        <input id="countries" style="width: 100%;"/>
+        <div class="demo-hint">Start typing the name of a country</div>
+    </div>
+
+    <script>
+        var l = 'https://restcountries.eu/rest/v2/name/';
+
+        //create AutoComplete UI component
+        $("#countries").kendoAutoComplete({
+            dataSource: data,
+            filter: "startswith",
+            placeholder: "Select country...",
+            separator: ", "
+        });
+
+    </script>
+
+</section>
+</body>
+</html>

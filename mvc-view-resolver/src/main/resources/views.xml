@@ -1,0 +1,14 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+
+    <bean id="echo" class="org.springframework.web.servlet.view.JstlView">
+        <property name="url" value="/jsp/echo.jsp"/>
+    </bean>
+    <bean id="echo2" class="course.spring.mvc.model.MyPDF">
+    </bean>
+    <bean id="echo3" class="course.spring.mvc.model.resource.Echo3">
+    </bean>
+
+</beans>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+
+    <h3>Conversions </h3>
+    <p>#conversions.convert(${conversionsVal1},'String') : [(${#conversions.convert(conversionsVal1,'java.lang.String')})]</p>
+
+    <p>#numbers.formatCurrency(${conversionsVal1}) : [(${#numbers.formatCurrency(conversionsVal1)})]</p>
+
+
+    <h3>Double-brace syntax</h3>
+
+    <h4>Float</h4>
+    <p>Simple-brace: [(${conversionsVal1})]</p>
+    <p th:text="${{conversionsVal1}}">Double-brace: [(${{conversionsVal1}})]</p>
+
+    <!--/*@thymesVar id="conversionsDate1" type="java.util.Date"*/-->
+    <h4>Date</h4>
+    <p>Simple-brace: [(${conversionsDate1})]</p>
+    <p>Double-brace: [(${{conversionsDate1}})]</p>
+
+
+    <!--/*@thymesVar id="conversionsUser1" type="course.spring.mvc.thymeleaf.simple.User"*/-->
+    <h4>User</h4>
+    <p>Simple-brace: [(${conversionsUser1})]</p>
+    <p>Double-brace: [(${{conversionsUser1}})]</p>
+
+    <!--/*@thymesVar id="conversionsItem1" type="course.spring.mvc.thymeleaf.simple.Item"*/-->
+    <h4>Item</h4>
+    <p>Simple-brace: [(${conversionsItem1.quantity})] / [(${conversionsItem1.cost})]</p>
+    <p>Double-brace: [(${{conversionsItem1.quantity}})] / [(${{conversionsItem1.cost}})]</p>
+
+ <!--/*@thymesVar id="myForm1" type="course.spring.mvc.thymeleaf.simple.MyForm"*/-->
+    <h4>My Form</h4>
+    Simple-brace:
+    <p th:text="${myForm1.date}"></p>
+    <p th:text="${myForm1.floatNumber}"></p>
+    Double-brace:
+    <p th:text="${{myForm1.date}}"></p>
+    <p th:text="${{myForm1.floatNumber}}"></p>
+
+    <br/>
+    <br/>
+    <br/>
+
+    <a th:href="@{/home}">home</a>
+</div>
+</body>
+
+</html>

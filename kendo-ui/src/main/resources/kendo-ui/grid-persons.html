@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template/base}"
+      th:with="title='grid-persons',
+        link_demo='https://demos.telerik.com/kendo-ui/grid/index',
+        link_api='https://docs.telerik.com/kendo-ui/api/javascript/ui/grid'">
+<body>
+<section layout:fragment="content">
+
+
+    <div id="example">
+        <div id="grid"></div>
+        <script>
+            $(function () {
+                $("#grid").kendoGrid({
+                    dataSource: {
+                        transport: {
+                            read: {
+                                url: "/persons"
+                            },
+                            destroy: {
+                                url: "/person/delete",
+                                type: "get",
+                                dataType: "jsonp"
+                            },
+                            update: {
+                                url: "/person/update",
+                                type: "post",
+                                dataType: "jsonp"
+                            },
+                            create: {
+                                url: "/person/add",
+                                type: "post",
+                                dataType: "jsonp"
+
+                            },
+                            parameterMap: function (data, type) {
+                                console.log(type, data);
+                                if (type === 'destroy') {
+                                    return {"id": data.id};
+                                }
+                                if (type !== 'read') {
+                                     return data.models[0];
+
+                                }
+                            }
+
+                        },
+                        batch: true,
+                        schema: {
+                            model: {
+                                id: 'id',
+                                fields: {
+                                    id: {editable: true},
+                                    firstName: {type: "string", editable: true},
+                                    lastName: {type: "string", editable: true}
+                                }
+                            }
+                        },
+                        pageSize: 20
+                    },
+                    toolbar: ["create"],
+                    columns:
+                        [
+                            {field: "id", title: "#Id", width: "120px"},
+                            {field: "firstName", title: "First Name", width: "120px"},
+                            {field: "lastName", title: "Last Name", width: "120px"},
+                            {command: ["edit", "destroy"], title: "&nbsp;", width: "250px"}],
+                    editable:
+                        "inline"
+
+
+                })
+                ;
+
+
+            });
+        </script>
+    </div>
+
+    <style type="text/css">
+
+
+    </style>
+
+
+</section>
+
+
+</body>
+</html>

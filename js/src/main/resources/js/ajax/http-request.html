@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template/base}">
+
+
+<head>
+    <title>Menu</title>
+
+
+    <script type="text/javascript">
+
+
+        window.addEventListener('load', function () {
+
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "https://restcountries.eu/rest/v2/all");
+
+            xhr.addEventListener('load', function (ev) {
+
+                console.log(ev);
+                if (ev.target.readyState == 4 && ev.target.status == 200) {
+                    var countrySelect = document.querySelector("#country-list1");
+
+                    document.querySelector("#country-response1").value=xhr.responseText;
+                    var countries = JSON.parse(xhr.responseText);
+
+                    for (var country in countries) {
+                        var option = document.createElement("option");
+                        option.value = countries[country].alpha2Code;
+                        option.text = countries[country].name;
+                        countrySelect.add(option);
+                    }
+
+                    countrySelect.options[0].text = 'Select...';
+                }
+            });
+
+
+            xhr.addEventListener('progress', function (ev) {
+                if (ev.lengthComputable) {
+                    var percentComplete = ev.loaded / ev.total * 100;
+                    // ...
+                } else {
+                }
+                console.log( ev.loaded );
+            });
+            xhr.send(null);
+
+
+        });
+
+
+
+        window.addEventListener('load', function () {
+
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "https://restcountries.eu/rest/v2/all");
+            xhr.responseType = 'json';
+            xhr.addEventListener('load', function (ev) {
+                console.log(ev);
+                if (ev.target.readyState == 4 && ev.target.status == 200) {
+
+
+
+                    var countrySelect = document.querySelector("#country-list2");
+
+                    var countries = xhr.response;
+                    document.querySelector("#country-response2").value=JSON.stringify(xhr.response);
+
+                    for (var country in countries) {
+                        var option = document.createElement("option");
+                        option.value = countries[country].alpha2Code;
+                        option.text = countries[country].name;
+                        countrySelect.add(option);
+                    }
+
+                    countrySelect.options[0].text = 'Select...';
+                }
+            });
+            xhr.addEventListener('progress', function (ev) {
+                if (ev.lengthComputable) {
+                    var percentComplete = ev.loaded / ev.total * 100;
+                    // ...
+                } else {
+                }
+                console.log( ev.loaded );
+            });
+            xhr.send(null);
+
+
+        });
+
+    </script>
+</head>
+<body>
+<section layout:fragment="content">
+
+    <h2>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/XMLHttpRequest">XMLHttpRequest</a>
+    </h2>
+    <form>
+        <div class="grid">
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="country-list1">Countries Text</label>
+                    <select id="country-list1">
+                        <option>Loading Text...</option>
+                    </select>
+
+                </div>
+                <div class="col-md-4">
+
+                    <label for="country-list2">Countries JSON</label>
+                    <select id="country-list2">
+                        <option>Loading JSON...</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <textarea id="country-response1" cols="40" rows="60"></textarea>
+                </div>
+                <div class="col-md-4">
+                    <textarea id="country-response2" cols="40" rows="60"></textarea>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+
+</section>
+
+</body>
+</html>
+

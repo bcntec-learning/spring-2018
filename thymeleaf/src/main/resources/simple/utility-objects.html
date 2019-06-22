@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+    <h3>Expression Utility Objects</h3>
+
+    <h4>Dates Objects</h4>
+    <p th:text="${#dates.formatISO(date1)}"></p>
+    <p th:text="${#dates.format(date1,'yyyy-MM-dd')}"></p>
+    <p th:text="${#dates.createNow()}"></p>
+    <p th:text="${{#dates.createNow()}}"></p>
+
+    <h4>Calendar Objects</h4>
+    <p th:text="${#calendars.formatISO(calendar1)}"></p>
+    <p th:text="${#calendars.format(calendar1, 'dd-MM-yyyy HH:mm')}"></p>
+    <p th:text="${#calendars.dayOfWeekName(calendar1)}"></p>
+
+    <h4>Numbers Objects</h4>
+    <p th:text="${#numbers.formatDecimal(number1,7,3)}"></p>
+    <p th:text="${#numbers.formatDecimal(number1,10,3,'COMMA')}"></p>
+
+    <a th:each="number2: ${#numbers.sequence(1,100)}">
+        [(${number2} )]
+    </a>
+
+
+    <h4>Strings Objects</h4>
+
+    <p th:text="${#strings.isEmpty(string1)}"></p>
+    <p th:text="${#strings.isEmpty(nullString1)}"></p>
+    <p th:text="${#strings.defaultString(emptyString1,'Empty String')}"></p>
+    <p th:text="${#strings.indexOf(string1,'wo')}"></p>
+    <p th:text="${#strings.substring(string1,3,5)}"></p>
+    <p th:text="${#strings.substringAfter(string1,'w')}"></p>
+    <p th:text="${#strings.substringBefore(string1,'w')}"></p>
+    <p th:text="${#strings.replace(string1,'hello','bye')}"></p>
+
+
+    <h4>Aggregates</h4>
+    <p th:text="${#aggregates.sum(list1)}"></p>
+    <p th:text="${#aggregates.avg(list1)}"></p>
+    <p th:text="${#aggregates.sum(list1)}"></p>
+    <p th:text="${#aggregates.avg(list1)}"></p>
+
+
+    <h4>Id</h4>
+    <div>Title of [(${#ids.next('item')})]</div>
+    <div th:id="${#ids.seq('item')}">Div 1</div>
+    <div>Title of [(${#ids.next('item')})]</div>
+    <div th:id="${#ids.seq('item')}">Div 2</div>
+    <div>Title of [(${#ids.next('item')})]</div>
+    <div th:id="${#ids.seq('item')}">Div 3</div>
+    <div>Title of [(${#ids.next('item')})]</div>
+    <div th:id="${#ids.seq('item')}">Div 4</div>
+
+    <li><a th:href="@{/home}">home</a></li>
+</div>
+</body>
+
+</html>

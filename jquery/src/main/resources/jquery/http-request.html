@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template/base}">
+
+
+<head>
+    <title>Http Request</title>
+
+
+    <script type="text/javascript">
+
+
+        $(function () {
+
+        });
+
+    </script>
+
+
+</head>
+<body>
+<section layout:fragment="content">
+
+
+    <form>
+        <div class="grid">
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="country-list1">Countries Text</label>
+                    <select id="country-list1">
+                        <option>Loading Text...</option>
+                    </select>
+
+                </div>
+                <div class="col-md-4">
+
+                    <label for="country-list2">Countries JSON</label>
+                    <select id="country-list2">
+                        <option>Loading JSON...</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+
+</section>
+
+</body>
+</html>
+

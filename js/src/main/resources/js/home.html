@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template/base}">
+<head>
+    <title>JS</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <ul>
+        <li><a th:href="@{/http-request}">XMLHttpRequest :: TEXT vs JSON</a></li>
+        <li><a th:href="@{/synch-asynch}">XMLHttpRequest :: Asynch</a></li>
+    </ul>
+</section>
+
+</body>
+</html>

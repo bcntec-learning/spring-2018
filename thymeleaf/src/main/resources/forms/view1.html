@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Form demo</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="css/main.css" th:href="@{/css/main.css}"/>
+</head>
+<body>
+
+
+<!--/*@thymesVar id="myForm" type="course.spring.mvc.thymeleaf.forms.MyForm1"*/-->
+<table th:object="${myForm}">
+    <tr>
+        <td>First</td>
+        <td th:text="*{first}"></td>
+    </tr>
+    <tr>
+        <td>Last</td>
+        <td th:text="*{last}"></td>
+    </tr>
+    <tr>
+        <td>Value</td>
+        <td th:text="*{#numbers.formatInteger(value,7)}?: 'nulo'"></td>
+    </tr>
+</table>
+
+<p><a th:href="@{/home}">Back [href]...</a></p>
+</body>
+</html>

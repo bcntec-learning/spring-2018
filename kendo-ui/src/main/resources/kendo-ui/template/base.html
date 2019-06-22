@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout ">
+
+
+<head id="head">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <title>Kendo UI :: [(${title})]</title>
+
+
+    <link rel="stylesheet" th:href="@{/styles/kendo.common.min.css}" />
+    <link rel="stylesheet" th:href="@{/styles/kendo.default.min.css}" />
+    <link rel="stylesheet" th:href="@{/styles/kendo.default.mobile.min.css}" />
+
+
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/kendo.all.min.js}"></script>
+
+
+
+    <script th:src="@{/js/cultures/kendo.culture.en-US.min.js}"></script>
+    <script th:src="@{/js/cultures/kendo.culture.en-GB.min.js}"></script>
+    <script th:src="@{/js/cultures/kendo.culture.de-DE.min.js}"></script>
+    <script th:src="@{/js/cultures/kendo.culture.fr-FR.min.js}"></script>
+    <script th:src="@{/js/cultures/kendo.culture.bg-BG.min.js}"></script>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+
+<body>
+<div class="container" style=" overflow: auto;">
+    <div id="header">
+        <h3>Kendo UI :: [(${title})]</h3>
+        <p layout:fragment="header"></p>
+    </div>
+    <a th:href="@{/}">home</a>
+    <a th:href="${link_demo}">demo</a>
+    <a th:href="${link_api}">api</a>
+
+    <section layout:fragment="content">
+        <p>Page content goes here</p>
+    </section>
+
+    <div id="footer">
+        <div id="banner"></div>
+        <p layout:fragment="custom-footer"></p>
+    </div>
+
+</div>
+</body>
+</html>

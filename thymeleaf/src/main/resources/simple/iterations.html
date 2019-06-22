@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <h2>Users list</h2>
+
+    <!--/*@thymesVar id="userForm" type="course.spring.mvc.thymeleaf.simple.UserForm"*/-->
+    <form th:action="@{/iterations}" method="post" th:object="${userForm}">
+        <label th:for="*{q}">Search</label>:
+        <input id="q" name="q" autofocus="autofocus" th:value="*{q}"/>
+
+        <input type="submit" value="Search"/>
+    </form>
+
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th>#</th>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+        </tr>
+
+        </thead>
+        <tr  scope="row" th:each="user,stat : ${users}" th:class="${stat.odd}? 'odd'">
+            <!--/*@thymesVar id="user" type="course.spring.mvc.thymeleaf.simple.User"*/-->
+            <td th:text="${stat.index}"></td>
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.email}"></td>
+        </tr>
+    </table>
+</div>
+
+<li><a th:href="@{/home.html}">home</a></li>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Form demo</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="css/main.css" th:href="@{/css/main.css}"/>
+</head>
+<body>
+
+<!--/*@thymesVar id="myForm" type="course.spring.mvc.thymeleaf.forms.MyForm1"*/-->
+
+<div th:background="red" th:errors="${myForm}">...</div>
+<form th:action="@{/first}" method="post" th:object="${myForm}" >
+    <label th:for="*{first}">First</label>:
+    <input id="first" name="first" autofocus="autofocus" th:value="*{first}"/>
+    <span th:if="${#fields.hasErrors('first')}" th:errors="*{first}"></span><br/>
+    <label th:for="*{last}" >Last</label>:
+    <input id="last" name="last" th:value="*{last}"/>
+    <span th:if="${#fields.hasErrors('last')}" th:errors="*{last}"></span><br/>
+    <label th:for="*{value}">Value</label>:
+    <input id="value" name="value" th:value="*{value}"/>
+    <span th:if="${#fields.hasErrors('last')}" th:errors="*{last}"></span><br/>
+    <input type="submit" value="POST"/>
+</form>
+<p><a th:href="@{/home.html}">Back [relative]</a></p>
+<p><a th:href="home">Google [action]</a></p>
+</body>
+</html>

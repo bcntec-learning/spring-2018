@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout ">
+<head>
+</head>
+<body>
+
+<div id="fragment1">
+    Bye1 [(${{#dates.createNow()}})]
+</div>
+
+<div th:fragment="fragment2">
+    Bye2 [(${{#dates.createNow()}})]
+</div>
+
+<div th:fragment="fragment3">
+    Bye3  '[(${paramBye})]'
+</div>
+
+
+
+
+</body>
+</html>

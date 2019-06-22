@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title th:text="#{title}"></title>
+</head>
+<body>
+<!--/*@thymesVar id="author" type="java.lang.String"*/-->
+<!-- author -> static variable -->
+<h1>
+<a th:text="#{welcome(${author})}"></a></h1>
+<label></label>
+<div th:switch="__${#locale.language}__">
+    <p th:case="en">English</p>
+    <p th:case="es">Español</p>
+    <p th:case="ca">Català</p>
+    <p th:case="*">English</p>
+</div>
+<a th:href="@{/i18n(lang=en)}" th:if="${#locale.language}!='en'">English</a>
+<a th:href="@{/i18n(lang=es)}" th:if="${#locale.language}!='es'">Español</a>
+<a th:href="@{/i18n(lang=ca)}" th:if="${#locale.language}!='ca'">Català</a>
+
+
+</body>
+</html>

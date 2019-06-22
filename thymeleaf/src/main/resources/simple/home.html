@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <h2>Hello [(${author})]</h2>
+    <p th:text="${author}"></p>
+
+    <li><a th:href="@{/conditionals}">Conditionals</a></li>
+    <li><a th:href="@{/expressions}">Expressions</a></li>
+    <li><a th:href="@{/iterations}">Iterations</a></li>
+    <li><a th:href="@{/validations}">Validations</a></li>
+    <li><a th:href="@{/conversions}">Conversions</a></li>
+    <li><a th:href="@{/fields}">Fields</a></li>
+    <li><a th:href="@{/utility-objects}">Utility Objects</a></li>
+</div>
+</body>
+</html>

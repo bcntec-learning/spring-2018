@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template/base}"
+      th:with="title='Home'">
+<body>
+<section layout:fragment="content">
+    <div><a th:href="@{kendo.html}">'kendo' namespace</a></div>
+    <div><a th:href="@{template.html}">template</a></div>
+    <div><a th:href="@{datasource.html}">datasource</a></div>
+    <div><a th:href="@{autocomplete.html}">autocomplete</a></div>
+    <div> <a th:href="@{ui.html}">'ui' namespace</a></div>
+    <div> <a th:href="@{grid.html}">grid</a></div>
+    <div><a th:href="@{list-box.html}">list box</a></div>
+    <div><a th:href="@{numeric-textbox.html}">numeric-textbox</a></div>
+</section>
+
+</body>
+</html>

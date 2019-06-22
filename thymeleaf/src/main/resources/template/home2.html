@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="base">
+<body>
+
+<section layout:fragment="content">
+    Hello World2
+
+
+    <p>th:include</p>
+    <p th:include="fragments :: #fragment1"></p>
+
+    <p>th:replace</p>
+    <p th:replace="fragments :: fragment2"></p>
+
+    <p>th:replace with param 'Francisco'</p>
+    <p th:replace="fragments :: fragment3(paramBye='Francisco')"></p>
+
+    <p>th:with</p>
+    <div th:with="frag=~{fragments :: fragment2/text()}">
+        <p th:insert="${frag}">
+    </div>
+
+    <p>th:replace with another fragment</p>
+    <p th:replace="fragments :: fragment3(paramBye=~{ :: fragment3Bye})"></p>
+
+
+</section>
+<div th:fragment="fragment3Bye">
+    Jhon Wayne
+</div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template/base}"
+      th:with="title='ui',
+        link_demo='',
+        link_api='https://docs.telerik.com/kendo-ui/api/javascript/ui'">
+<body>
+<section layout:fragment="content">
+
+
+    <div id="ui-confirm"></div>
+    <script>
+        $("#confirm").kendoConfirm({
+            messages: {
+                okText: "OK",
+                cancel: "No"
+            }
+        }).data("ui-Confirm").open();
+    </script>
+
+</section>
+
+
+</body>
+</html>
